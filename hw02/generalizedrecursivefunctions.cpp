@@ -59,17 +59,18 @@ int main() {
 
         vector<vector<optional<BigInteger>>> dp(100, vector<optional<BigInteger>>(100, nullopt));
 
-        function<BigInteger(int, int)> f = [&](int x, int y) -> BigInteger {
-            if (x <= 0 || y <= 0) return BigInteger{ d };
-            if (dp[x][y]) return *dp[x][y];
+        function<BigInteger(int, int)> f{
+            [&](int x, int y) -> BigInteger {
+                if (x <= 0 || y <= 0) return BigInteger{ d };
+                if (dp[x][y]) return *dp[x][y];
 
-            BigInteger ans{ c };
-            for (size_t i{}; i < a.size(); ++i) {
-                ans += f(x - a[i], y - b[i]);
-            }
+                BigInteger ans{ c };
+                for (size_t i{}; i < a.size(); ++i) {
+                    ans += f(x - a[i], y - b[i]);
+                }
 
-            return dp[x][y].emplace(ans);
-        };
+                return dp[x][y].emplace(ans);
+        } };
 
         for (size_t i{}; i < x.size(); ++i) {
             cout << f(x[i], y[i]) << '\n';
