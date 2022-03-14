@@ -7,18 +7,16 @@ public:
     BigInteger();
     explicit BigInteger(long long num);
     BigInteger(const BigInteger& rhs);
-
-    // not needed, just implement to follow OOP principles
-    BigInteger& operator=(const BigInteger& rhs);
+    BigInteger& operator=(const BigInteger& rhs); // not needed, just implement to follow OOP principles
 
     BigInteger& operator+=(const BigInteger& rhs);
     friend ostream& operator<<(ostream& os, const BigInteger& rhs);
 
 private:
-    vector<int8_t> arr;
+    vector<short> arr;
 
-    int8_t& operator[](size_t pos);
-    int8_t operator[](size_t pos) const;
+    short& operator[](size_t pos);
+    short operator[](size_t pos) const;
 };
 
 int main() {
@@ -79,10 +77,11 @@ int main() {
         cout << '\n';
     }
 
+
     return 0;
 }
 
-BigInteger::BigInteger() : arr(1, 0) {}
+BigInteger::BigInteger() : arr{ 0 } {}
 
 BigInteger::BigInteger(long long num) {
     for (; num > 0; num /= 10) {
@@ -102,7 +101,7 @@ BigInteger& BigInteger::operator+=(const BigInteger& rhs) {
     size_t sz1{ arr.size() }, sz2{ rhs.arr.size() };
     size_t newsize{ max(sz1, sz2) + 1 };
 
-    arr.resize(newsize);
+    arr.resize(newsize, 0);
 
     for (size_t i{}; i < newsize - 1; ++i) {
         if (i < sz2) arr[i] += rhs[i];
@@ -116,16 +115,16 @@ BigInteger& BigInteger::operator+=(const BigInteger& rhs) {
 }
 
 ostream& operator<<(ostream& os, const BigInteger& rhs) {
-    for (int i{ static_cast<int>(rhs.arr.size()) - 1 }; i >= 0; --i) {
-        os << static_cast<int>(rhs[i]);
+    for (auto it{ rhs.arr.crbegin() }; it != rhs.arr.crend(); ++it) {
+        os << *it;
     }
     return os;
 }
 
-int8_t& BigInteger::operator[](size_t pos) {
+short& BigInteger::operator[](size_t pos) {
     return arr[pos];
 }
 
-int8_t BigInteger::operator[](size_t pos) const {
+short BigInteger::operator[](size_t pos) const {
     return arr[pos];
 }
