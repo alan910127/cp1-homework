@@ -1,58 +1,24 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-using pii = pair<int, int>;
-
 // only support non-negative addition
 class BigInteger {
 public:
-    BigInteger() : arr(1, 0) {}
-    explicit BigInteger(long long num) {
-        if (num == 0) {
-            arr.assign(1, 0);
-            return;
-        }
+    BigInteger();
+    explicit BigInteger(long long num);
+    BigInteger(const BigInteger& rhs);
 
-        for (; num > 0; num /= 10) {
-            arr.push_back(num % 10);
-        }
-    }
-    BigInteger(const BigInteger& rhs) : arr{ rhs.arr } {}
+    // not needed, just implement to follow OOP principles
+    BigInteger& operator=(const BigInteger& rhs);
 
-    BigInteger& operator=(const BigInteger& rhs) {
-        this->arr = rhs.arr;
-        return *this;
-    }
-
-    BigInteger& operator+=(const BigInteger& rhs) {
-        size_t sz1{ arr.size() }, sz2{ rhs.arr.size() };
-        size_t newsize{ max(sz1, sz2) + 1 };
-
-        arr.resize(newsize);
-
-        for (size_t i{}; i < newsize - 1; ++i) {
-            if (i < sz2) arr[i] += rhs[i];
-            arr[i + 1] += arr[i] / 10;
-            arr[i] %= 10;
-        }
-
-        while (arr.size() > 1 && arr.back() == 0) arr.pop_back();
-
-        return *this;
-    }
-
-    friend ostream& operator<<(ostream& os, const BigInteger& rhs) {
-        for (int i{ static_cast<int>(rhs.arr.size()) - 1 }; i >= 0; --i) {
-            os << static_cast<int>(rhs[i]);
-        }
-        return os;
-    }
+    BigInteger& operator+=(const BigInteger& rhs);
+    friend ostream& operator<<(ostream& os, const BigInteger& rhs);
 
 private:
     vector<int8_t> arr;
 
-    int8_t& operator[](size_t pos) { return arr[pos]; }
-    int8_t operator[](size_t pos) const { return arr[pos]; }
+    int8_t& operator[](size_t pos);
+    int8_t operator[](size_t pos) const;
 };
 
 int main() {
@@ -114,4 +80,52 @@ int main() {
     }
 
     return 0;
+}
+
+BigInteger::BigInteger() : arr(1, 0) {}
+
+BigInteger::BigInteger(long long num) {
+    for (; num > 0; num /= 10) {
+        arr.push_back(num % 10);
+    }
+    if (arr.empty()) arr.push_back(0);
+}
+
+BigInteger::BigInteger(const BigInteger& rhs) : arr{ rhs.arr } {}
+
+BigInteger& BigInteger::operator=(const BigInteger& rhs) {
+    this->arr = rhs.arr;
+    return *this;
+}
+
+BigInteger& BigInteger::operator+=(const BigInteger& rhs) {
+    size_t sz1{ arr.size() }, sz2{ rhs.arr.size() };
+    size_t newsize{ max(sz1, sz2) + 1 };
+
+    arr.resize(newsize);
+
+    for (size_t i{}; i < newsize - 1; ++i) {
+        if (i < sz2) arr[i] += rhs[i];
+        arr[i + 1] += arr[i] / 10;
+        arr[i] %= 10;
+    }
+
+    while (arr.size() > 1 && arr.back() == 0) arr.pop_back();
+
+    return *this;
+}
+
+ostream& operator<<(ostream& os, const BigInteger& rhs) {
+    for (int i{ static_cast<int>(rhs.arr.size()) - 1 }; i >= 0; --i) {
+        os << static_cast<int>(rhs[i]);
+    }
+    return os;
+}
+
+int8_t& BigInteger::operator[](size_t pos) {
+    return arr[pos];
+}
+
+int8_t BigInteger::operator[](size_t pos) const {
+    return arr[pos];
 }
