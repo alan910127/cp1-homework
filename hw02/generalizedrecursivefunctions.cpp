@@ -93,7 +93,6 @@ int main() {
             y.push_back(v);
         }
 
-        map<pii, BigInteger> mp{};
         vector<vector<optional<BigInteger>>> dp(100, vector<optional<BigInteger>>(100, nullopt));
 
         function<BigInteger(int, int)> f = [&](int x, int y) -> BigInteger {
