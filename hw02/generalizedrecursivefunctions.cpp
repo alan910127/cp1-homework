@@ -57,7 +57,7 @@ int main() {
             y.push_back(v);
         }
 
-        vector<vector<optional<BigInteger>>> dp(100, vector<optional<BigInteger>>(100, nullopt));
+        optional<BigInteger> dp[100][100]{};
 
         function<BigInteger(int, int)> f{
             [&](int x, int y) -> BigInteger {
