@@ -8,6 +8,4 @@
 - [c++17] Structured binding: `auto [identifier-list] = expression;`
     - e.g. `auto [x, y] = position;`
 
-$\text{Test for }\LaTeX.$
-
-last updated: 2022-03-19
+last updated: 2022-03-20
