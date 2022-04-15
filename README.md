@@ -3,10 +3,20 @@
 > cpp standard: `c++17` <br>
 > Compile with the option `-std=c++17` turned on.
 
-- [c++11] Range-based for loop: `for (type var : iterable)`
+## Skills
+
+- Range-based for loop: `for (type var : iterable)`
     - e.g. `for (auto i : nums) { }`
-- [c++17] Structured binding: `auto [identifier-list] = expression;`
+    - requirement: C++11 or higher.
+- Structured binding: `auto [identifier-list] = expression;`
     - e.g. `auto [x, y] = position;`
+    - requirement: C++17 or higher.
+- `std::valarray`
+    - Fast for mathematical operations.
+    - Support operations apply to the whole array, such as `v1 = a * v2 + c;`.
+    - Useful in implementing FFT (see hw05 kinversions).
+
+## Links
 
 - [Homework 1](https://open.kattis.com/contests/bw78fe)
 - [Homework 2](https://open.kattis.com/contests/vrysui)
