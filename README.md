@@ -8,4 +8,13 @@
 - [c++17] Structured binding: `auto [identifier-list] = expression;`
     - e.g. `auto [x, y] = position;`
 
+- [Qualification](https://open.kattis.com/contests/bw78fe)
+- [Homework 1](https://open.kattis.com/contests/vrysui)
+- [Homework 2](https://open.kattis.com/contests/nffp9r)
+- [Homework 3](https://open.kattis.com/contests/vkyd7b)
+- [Homework 4](https://open.kattis.com/contests/vkyd7b)
+- [Homework 5](https://open.kattis.com/contests/hbyy5j)
+- [Homework 6](https://open.kattis.com/contests/dimhi9)
+
+
 last updated: 2022-03-20
