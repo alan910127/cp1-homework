@@ -12,9 +12,9 @@
     - e.g. `auto [x, y] = position;`
     - requirement: C++17 or higher.
 - `std::valarray`
-    - Fast for mathematical operations.
-    - Support operations apply to the whole array, such as `v1 = a * v2 + c;`.
-    - Useful in implementing FFT (see hw05 kinversions).
+    - Fast for arithmetic operations.
+    - Supporting operations apply to the whole array, such as `v1 = a * v2 + c;`.
+    - Useful in implementing FFT (see hw05 `kinversions.cpp`).
 
 ## Links
 
