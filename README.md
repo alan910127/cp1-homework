@@ -26,4 +26,4 @@
 - [Homework 6](https://open.kattis.com/contests/dimhi9)
 
 
-last updated: 2022-04-15
+last updated: 2022-04-16
