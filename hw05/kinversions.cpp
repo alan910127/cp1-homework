@@ -33,7 +33,7 @@ void FFT(Polynomial& p) {
     for (ll j = 0; j < n / 2; ++j) {
         // std::polar(r, theta) = r (cos(theta) + i sin(theta))
         //                      = r * std::exp(theta * 1i)
-        // omega = exp(2 pi i / n)  [root of unity]
+        // omega = exp(2 pi i / n)    [root of unity]
         complex<double> t{ polar(1.0, 2.0 * PI * j / n) /* <- omega^j */ * odd[j] };
         p[j] = even[j] + t;
         p[j + n / 2] = even[j] - t;
