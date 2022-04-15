@@ -7,14 +7,15 @@ using pii = pair<int, int>;
 using Polynomial = valarray<complex<double>>;
 const double PI = acos(-1);
 
-// Find the smallest integer N such that N >= n and N = 2^k for some k is an integer.
+// Smallest power of 2 greater than or equal to n.
 ll nextPowewOf2(ll n) {
-    n--;
+    --n;
     n |= n >> 1;
     n |= n >> 2;
     n |= n >> 4;
     n |= n >> 8;
     n |= n >> 16;
+    n |= n >> 32;
     return n + 1;
 }
 
@@ -31,7 +32,7 @@ void FFT(Polynomial& p) {
 
     for (ll j = 0; j < n / 2; ++j) {
         // std::polar(r, theta) = r (cos(theta) + i sin(theta))
-        // std::polar(r, theta) = r * std::exp(theta * 1i)
+        //                      = r * std::exp(theta * 1i)
         // omega = exp(2 pi i / n)  [root of unity]
         complex<double> t{ polar(1.0, 2.0 * PI * j / n) /* <- omega^j */ * odd[j] };
         p[j] = even[j] + t;
