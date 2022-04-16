@@ -19,7 +19,7 @@ ll nextPowewOf2(ll n) {
     return n + 1;
 }
 
-// T(n) = T(n / 2) + O(n) => T(n) = O(n log n) by Master Theorem
+// T(n) = 2T(n / 2) + O(n) => T(n) = O(n log n) by Master Theorem
 void FFT(Polynomial& p) {
     ll n = p.size();
     if (n <= 1) return;
